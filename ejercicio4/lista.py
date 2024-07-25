@@ -4,9 +4,29 @@ from cd import cd
 
 class Lista:
     __comienzo: Nodo
+    __actual: Nodo
+    __tope: int
+    __index: int
     
     def __init__(self):
         self.__comienzo = None
+        self.__actual = None
+        self.__tope = 0
+        self.__index = 0
+        
+    def __iter__(self):
+        return self
+    
+    def __next__(self):
+        if self.__index == self.__tope:
+            self.__actual = self.__comienzo
+            self.__index = 0
+            raise StopIteration
+        else:
+            self.__indice += 1
+            dato =self.__actual.getPublicacion()
+            self.__actual = self.__actual.getSig()
+            return dato
         
     def agregar(self, publicacion):
         nodo = Nodo(publicacion)
@@ -27,7 +47,7 @@ class Lista:
             i += 1
             
         if aux == None:
-            print("posicion incorrecta")
+            raise IndexError("Posicion invalida")
         else:
             publi = aux.getPublicacion()
             if isinstance(publi, libro):

@@ -26,8 +26,8 @@ def test():
                 lista.excepcion(pos)
             except ValueError:
                 print("ingrese un numero valido")
-            except IndexError:
-                print("posicion invalida")
+            except IndexError as e:
+                print(e)
                 
         elif opcion == 2:
             anio = int(input("Escribe el anio: "))

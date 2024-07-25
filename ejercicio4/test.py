@@ -32,9 +32,14 @@ def test():
             cd2.mostrar()
 
         elif opcion == 1:
-            pos = int(input("ingrese la posicion: "))
-            l.buscarPos(pos)
-
+            try:
+                pos = int(input("ingrese la posicion: "))
+                l.buscarPos(pos)
+            except ValueError:
+                print("ingrese un numero valido")
+            except IndexError as e:
+                print(e)
+                
         elif opcion == 2:
             l.cantidad()
             
