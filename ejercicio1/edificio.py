@@ -1,3 +1,4 @@
+from departamento import Departamento
 class Edificio:
     __id: int
     __nombre: str
@@ -17,7 +18,8 @@ class Edificio:
         self.__departamento = []
         
     def agregarDepartamento(self, departamento):
-        self.__departamento.append(departamento)
+        d = Departamento(departamento.getId(), departamento.getNombre(), departamento.getDireccion(), departamento.getEmpresaConstructora(), departamento.getCantidadDePisos(), departamento.getCantidadDeDepartamentos())
+        self.__departamento.append(d)
         
     def __del__(self):
         print("eliminando dpto")
