@@ -39,15 +39,27 @@ class Gestor:
         self.__comienzo = nodo
         self.__tope += 1
         
+    def agregar2(self, equipo):
+        nodo = Nodo(equipo)
+        if self.__comienzo is None:
+            self.__comienzo = nodo
+        else:
+            actual = self.__comienzo
+            while actual.getSig() is not None:
+                actual = actual.getSig()
+            actual.setSig(nodo)
+        self.__tope += 1
+        
+        
     def inicializar(self):
         archivo = open("C:/Users/danie/OneDrive/Documentos/GitHub/u3-poo/recParcial22/archivoscsv/equipos.csv", "r")
         reader = csv.reader(archivo, delimiter=';')
         for row in reader:
             if row[0] == "M":
-                self.agregar(Maquinaria(row[1], row[2], int(row[3]), row[4], row[5], int(row[6]), float(row[7]), int(row[8]), row[9], int(row[10])))
+                self.agregar2(Maquinaria(row[1], row[2], int(row[3]), row[4], row[5], int(row[6]), float(row[7]), int(row[8]), row[9], int(row[10])))
                 
             elif row[0] == "E":
-                self.agregar(Herramientas(row[1], row[2], int(row[3]), row[4], row[5], (row[6]), float(row[7]), int(row[8]), row[9]))
+                self.agregar2(Herramientas(row[1], row[2], int(row[3]), row[4], row[5], (row[6]), float(row[7]), int(row[8]), row[9]))
         archivo.close()
         
     def mostrar(self):
